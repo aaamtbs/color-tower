@@ -551,7 +551,7 @@ namespace ChristmasTree {
     //% blockId="christmastree_pickColorWheel" block="WheelColor $color"
     //% color.shadow="colorWheelPicker"
     export function wheelColor(color: number): number {
-       
+        // rgb color class
         class rgb {
             public r: number;
             public g: number;
