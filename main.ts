@@ -1,9 +1,4 @@
-// 在這裡添加你的程式
-/**
-* Use this file to define custom functions and blocks.
-* Read more at https://makecode.microbit.org/blocks/custom
-*/
-
+let strip = neopixel.create(DigitalPin.P0, ChristmasTree.wheelColor(0), NeoPixelMode.RGB)
 enum LEDMode {
         //% block="Rainbow Mode"
         Rainbow = 0,
@@ -16,7 +11,6 @@ enum LEDMode {
         //% block="Free Mode"
         Free = 4
 }
-
 enum Level {
         //% block="Level 1"
         Level_1 = 0,
@@ -57,11 +51,6 @@ enum Level {
         //% block="Level 19"
         Level_19 = 18
 }
-
-/**
-* Christmas Tree blocks
-*/
-//% weight=100 color=#c49118 icon="❄"
 namespace ChristmasTree {
     /**
      * A ChristmasTree tree
@@ -219,13 +208,13 @@ namespace ChristmasTree {
                 this.breathAnimation();
                 this.showStrip();
             }else if(this.mode==3){
-                let mic = 128
+                let mic2 = 128
                 try{
-                    mic = input.soundLevel()
-                }catch(err){
-                    mic = 128
+                    mic2 = input.soundLevel()
+                }catch(err2){
+                    mic2 = 128
                 }
-                this.riseAnimation(mic, 100)
+                this.riseAnimation(mic2, 100)
                 this.showStrip();
             }else{
                 this.showStrip();
@@ -357,8 +346,8 @@ namespace ChristmasTree {
         //% parts="christmastree"
         public triggerRiseWithColor(duration:number, color:number):void{
             this._riseDuration = duration
-            let _duration = this._riseDuration
-            this._riseState[0] = this._riseState[1] = _duration
+            let _duration2 = this._riseDuration
+            this._riseState[0] = this._riseState[1] = _duration2
             this._riseColor[0] = this._riseColor[1] = this.makeColor(color, 100, 50)
         }
         
@@ -372,8 +361,8 @@ namespace ChristmasTree {
         //% parts="christmastree"
         public triggerRise(duration:number):void{
             this._riseDuration = duration
-            let _duration = this._riseDuration
-            this._riseState[0] = this._riseState[1] = _duration
+            let _duration3 = this._riseDuration
+            this._riseState[0] = this._riseState[1] = _duration3
             this._riseColor[0] = this._riseColor[1] = this.makeColor(Math.random() * 360, 100, 50)
         }
         
@@ -385,7 +374,7 @@ namespace ChristmasTree {
         //% weight=90 blockGap=8
         //% parts="christmastree"
         public moveRise():void{
-            let _duration = this._riseDuration
+            let _duration4 = this._riseDuration
             this.strip.clear()
 
             for (let level = 0; level < this.numOfLEDPerPillar; level++) {
@@ -393,7 +382,7 @@ namespace ChristmasTree {
                     this.setLevelColor(level, this._riseColor[level])
                     this._riseState[level] -= 1;
                     if(this._riseState[level]==0 && level + 1 < this.numOfLEDPerPillar){
-                        this._riseState[level+1] = _duration + 1;
+                        this._riseState[level+1] = _duration4 + 1;
                         this._riseColor[level+1] = this._riseColor[level]
                     }
                 }else{
@@ -414,8 +403,8 @@ namespace ChristmasTree {
         //% weight=90 blockGap=8
         //% parts="christmastree"
         public setTreeColor(color:number):void{
-            for (let idx = 0; idx <= 19; idx++) {
-                this.setLevelColor(idx, color)
+            for (let idx2 = 0; idx2 <= 19; idx2++) {
+                this.setLevelColor(idx2, color)
             }
         }
 
@@ -428,8 +417,8 @@ namespace ChristmasTree {
         //% weight=90 blockGap=8
         //% parts="christmastree"
         public setTreeColorAndBrightness(color:number, brightness:number):void{
-            for (let idx = 0; idx <= 19; idx++) {
-                this.setLevelColor(idx, neopixel.hsl(color, 100, brightness))
+            for (let idx3 = 0; idx3 <= 19; idx3++) {
+                this.setLevelColor(idx3, neopixel.hsl(color, 100, brightness))
             }
         }
 
@@ -543,15 +532,15 @@ namespace ChristmasTree {
     export function hue(color: number): number {
         return (color%255)/255 * 360;
     }
-	
-	/**
+
+    /**
      * Gets color wheel
     */
     //% weight=2 blockGap=8
     //% blockId="christmastree_pickColorWheel" block="WheelColor $color"
     //% color.shadow="colorWheelPicker"
     export function wheelColor(color: number): number {
-        // rgb color class
+       
         class rgb {
             public r: number;
             public g: number;
@@ -564,20 +553,20 @@ namespace ChristmasTree {
         }
         
         let colorWheel = [
-            new rgb(0, 255, 255),
-            new rgb(60, 195, 255),
-            new rgb(120, 135, 255),
-            new rgb(180, 75, 255),
-            new rgb(240, 15, 255),
-            new rgb(255, 45, 210),
-            new rgb(255, 105, 150),
-            new rgb(255, 165, 90),
-            new rgb(255, 225, 30),
-            new rgb(225, 255, 30),
-            new rgb(165, 255, 90),
-            new rgb(105, 255, 150),
-            new rgb(45, 255, 210)
-        ];
+			{r:0,   g:255, b:255},
+			{r:60,  g:195, b:255},
+			{r:120, g:135, b:255},
+			{r:180, g:75,  b:255},
+			{r:240, g:15,  b:255},
+			{r:255, g:45,  b:210},
+			{r:255, g:105, b:150},
+			{r:255, g:165, b:90},
+			{r:255, g:225, b:30},
+			{r:225, g:255, b:30},
+			{r:165, g:255, b:90},
+			{r:105, g:255, b:150},
+			{r:45,  g:255, b:210}
+		];
 
 		let lerp = function  (start:number, end:number, amt:number):number{
 		  return (1-amt)*start+amt*end
@@ -586,13 +575,13 @@ namespace ChristmasTree {
 			return b + ((i/99) * (e-b));
 		}
 		color = color >> 0;
-		let _percent = color / 256
+		let _percent = color / 256;
 		let b_index = Math.floor(_percent*colorWheel.length);
 		let e_index = b_index + 1;
 		e_index = (e_index>colorWheel.length-1)?colorWheel.length-1:e_index
 		
-		let start = new rgb(colorWheel[b_index].r, colorWheel[b_index].g, colorWheel[b_index].b )
-		let end = new rgb(colorWheel[e_index].r, colorWheel[e_index].g, colorWheel[e_index].b )
+		let start = {r:colorWheel[b_index].r, g:colorWheel[b_index].g, b:colorWheel[b_index].b}
+		let end = {r:colorWheel[e_index].r, g:colorWheel[e_index].g, b:colorWheel[e_index].b}
 		let u = _percent * colorWheel.length - 1.
 		u =  u - Math.floor(u);
 
@@ -603,5 +592,7 @@ namespace ChristmasTree {
 
         return neopixel.rgb(r,g,b);
     }
+	
+	
 	
 }
