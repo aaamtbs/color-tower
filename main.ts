@@ -543,14 +543,65 @@ namespace ChristmasTree {
     export function hue(color: number): number {
         return (color%255)/255 * 360;
     }
-
-    /**
+	
+	/**
      * Gets color wheel
     */
     //% weight=2 blockGap=8
-    //% blockId="christmastree_pickColorWheel" block="Wheel $color"
+    //% blockId="christmastree_pickColorWheel" block="WheelColor $color"
     //% color.shadow="colorWheelPicker"
     export function wheelColor(color: number): number {
-        return neopixel.hsl(color%255/255 * 360, 100, 50);
+       
+        class rgb {
+            public r: number;
+            public g: number;
+            public b: number;
+            constructor(r?: number, g?: number, b?: number){
+                this.r = r;
+                this.g = g;
+                this.b = b;
+            }
+        }
+        
+        let colorWheel = [
+            new rgb(0, 255, 255),
+            new rgb(60, 195, 255),
+            new rgb(120, 135, 255),
+            new rgb(180, 75, 255),
+            new rgb(240, 15, 255),
+            new rgb(255, 45, 210),
+            new rgb(255, 105, 150),
+            new rgb(255, 165, 90),
+            new rgb(255, 225, 30),
+            new rgb(225, 255, 30),
+            new rgb(165, 255, 90),
+            new rgb(105, 255, 150),
+            new rgb(45, 255, 210)
+        ];
+
+		let lerp = function  (start:number, end:number, amt:number):number{
+		  return (1-amt)*start+amt*end
+		}
+		let getTween = function (b:number, e:number, i:number):number {
+			return b + ((i/99) * (e-b));
+		}
+		color = color >> 0;
+		let _percent = color / 256
+		let b_index = Math.floor(_percent*colorWheel.length);
+		let e_index = b_index + 1;
+		e_index = (e_index>colorWheel.length-1)?colorWheel.length-1:e_index
+		
+		let start = new rgb(colorWheel[b_index].r, colorWheel[b_index].g, colorWheel[b_index].b )
+		let end = new rgb(colorWheel[e_index].r, colorWheel[e_index].g, colorWheel[e_index].b )
+		let u = _percent * colorWheel.length - 1.
+		u =  u - Math.floor(u);
+
+		let r = Math.round(lerp(start.r, end.r, u));
+		let g = Math.round(lerp(start.g, end.g, u));
+		let b = Math.round(lerp(start.b, end.b, u));
+		let colorname = 'rgb(' + r + ',' + g + ',' + b + ')';		
+
+        return neopixel.rgb(r,g,b);
     }
+	
 }
