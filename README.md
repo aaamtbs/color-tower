@@ -20,6 +20,20 @@ To edit this repository in MakeCode.
 
 ## Blocks preview
 
+接駁安裝
+
+Rainbow 電光彩虹
+Rise 星際光束
+Equalizer 動態聲光
+Breath 柔和氣息
+Free 創意自選
+燈光隨聲音躍動
+自行編寫程序 發揮無盡可能
+
+注意 
+安裝底部時，小心避免碰撞LED燈粒，造成損壞。
+要把金屬螺絲上緊，避免電子接觸不良。
+
 This image shows the blocks code from the last commit in master.
 This image may take a few minutes to refresh.
 
