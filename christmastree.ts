@@ -551,7 +551,7 @@ namespace ChristmasTree {
 	//% weight=2 blockGap=8
 	//% blockId="christmastree_pickColorWheel" block="WheelColor $color"
 	//% color.shadow="colorWheelPicker"
-	function getWheelColor(color: number): number {
+	export function getWheelColor(color: number): number {
 		let colorWheel = [
 			{r:0,   g:255, b:255},
 			{r:60,  g:195, b:255},
