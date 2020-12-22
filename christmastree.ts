@@ -588,8 +588,8 @@ namespace ChristmasTree {
 		let b = Math.round(lerp(start.b, end.b, u));
 		//let colorname = 'rgb(' + r + ',' + g + ',' + b + ')';	
 		//console.log(colorname);
-		let colorname = neopixel.hsl(r,g,b);
-		return colorname;
+		//let colorname = neopixel.rgb(r,g,b);
+		return neopixel.rgb(r,g,b);
 		
 	}
 	
