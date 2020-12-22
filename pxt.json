@@ -1,5 +1,5 @@
 {
-    "name": "aaam-tbs-color-tower",
+    "name": "color-tower",
     "version": "0.4.5",
     "description": "Aaam x TBS Christmas Tree",
     "dependencies": {
@@ -10,7 +10,7 @@
     "files": [
         "README.md",
         "christmastree.ts",
-        "_locales/zh/aaam-tbs-color-tower-strings.json"
+        "_locales/zh/color-tower-strings.json"
     ],
     "testFiles": [
         "christmastree-test.ts"
