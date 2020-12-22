@@ -543,54 +543,54 @@ namespace ChristmasTree {
     export function hue(color: number): number {
         return (color%255)/255 * 360;
     }
-	
-	
-	/**
-	 * Gets color wheel
-	*/
-	//% weight=2 blockGap=8
-	//% blockId="christmastree_pickColorWheel" block="WheelColor $color"
-	//% color.shadow="colorWheelPicker"
-	export function getWheelColor(color: number): number {
-		let colorWheel = [
-			{r:0,   g:255, b:255},
-			{r:60,  g:195, b:255},
-			{r:120, g:135, b:255},
-			{r:180, g:75,  b:255},
-			{r:240, g:15,  b:255},
-			{r:255, g:45,  b:210},
-			{r:255, g:105, b:150},
-			{r:255, g:165, b:90},
-			{r:255, g:225, b:30},
-			{r:225, g:255, b:30},
-			{r:165, g:255, b:90},
-			{r:105, g:255, b:150},
-			{r:45,  g:255, b:210}
-		];
+    
+    
+    /**
+     * Gets color wheel
+    */
+    //% weight=2 blockGap=8
+    //% blockId="christmastree_pickColorWheel" block="WheelColor $color"
+    //% color.shadow="colorWheelPicker"
+    export function wheelColor(color: number): number {
+        let colorWheel = [
+            {r:0,   g:255, b:255},
+            {r:60,  g:195, b:255},
+            {r:120, g:135, b:255},
+            {r:180, g:75,  b:255},
+            {r:240, g:15,  b:255},
+            {r:255, g:45,  b:210},
+            {r:255, g:105, b:150},
+            {r:255, g:165, b:90},
+            {r:255, g:225, b:30},
+            {r:225, g:255, b:30},
+            {r:165, g:255, b:90},
+            {r:105, g:255, b:150},
+            {r:45,  g:255, b:210}
+        ];
 
-		let lerp = function  (start: number, end: number, amt: number): number{
-		  return (1-amt)*start+amt*end
-		}
-		color = color >> 0;
-		color = (color>255)?255:color;
-		let _percent = color / 256;
-		let b_index = Math.floor(_percent*colorWheel.length);
-		let e_index = b_index + 1;
-		e_index = (e_index>colorWheel.length-1)?colorWheel.length-1:e_index
-		
-		let start = {r:colorWheel[b_index].r, g:colorWheel[b_index].g, b:colorWheel[b_index].b}
-		let end = {r:colorWheel[e_index].r, g:colorWheel[e_index].g, b:colorWheel[e_index].b}
-		let u = _percent * colorWheel.length - 1.
-		u =  u - Math.floor(u);
+        let lerp = function  (start: number, end: number, amt: number): number{
+          return (1-amt)*start+amt*end
+        }
+        color = color >> 0;
+        color = (color>255)?255:color;
+        let _percent = color / 256;
+        let b_index = Math.floor(_percent*colorWheel.length);
+        let e_index = b_index + 1;
+        e_index = (e_index>colorWheel.length-1)?colorWheel.length-1:e_index
+        
+        let start = {r:colorWheel[b_index].r, g:colorWheel[b_index].g, b:colorWheel[b_index].b}
+        let end = {r:colorWheel[e_index].r, g:colorWheel[e_index].g, b:colorWheel[e_index].b}
+        let u = _percent * colorWheel.length - 1.
+        u =  u - Math.floor(u);
 
-		let r = Math.round(lerp(start.r, end.r, u));
-		let g = Math.round(lerp(start.g, end.g, u));
-		let b = Math.round(lerp(start.b, end.b, u));
-		//let colorname = 'rgb(' + r + ',' + g + ',' + b + ')';	
-		//console.log(colorname);
-		//let colorname = neopixel.rgb(r,g,b);
-		return neopixel.rgb(r,g,b);
-		
-	}
-	
+        let r = Math.round(lerp(start.r, end.r, u));
+        let g = Math.round(lerp(start.g, end.g, u));
+        let b = Math.round(lerp(start.b, end.b, u));
+        //let colorname = 'rgb(' + r + ',' + g + ',' + b + ')';
+        //console.log(colorname);
+        //let colorname = neopixel.rgb(r,g,b);
+        return neopixel.rgb(r,g,b);
+        
+    }
+    
 }
